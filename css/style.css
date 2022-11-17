@@ -20,3 +20,9 @@ body, html {
   transform: translate(-50%, -50%);
   color: white;
 }
+.cards-wrapper{
+  display: flex;
+}
+.card{
+  margin:0;
+}
