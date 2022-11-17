@@ -4,11 +4,16 @@ body, html {
 
 .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/hero.jpg");
-  height: 75%;
+  height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-attachment: fixed;
+  align-items: center;
+  justify-content: center;
+
 }
 
 /* Place text in the middle of the image */
@@ -37,10 +42,4 @@ body, html {
 .image-wrapper img{
   max-width: 100%;
   max-height: 100%;
-}
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
