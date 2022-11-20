@@ -123,3 +123,10 @@
 .image__overlay:hover{
 	opacity: 1;
 }
+#countrypage{
+    height: 100%;
+    margin-top:1em;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
