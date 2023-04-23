@@ -15,62 +15,52 @@
 </head>
 <body>
 	
-	<nav class="navbar navbar-expand-lg bg-light">
+	<nav class="navbar navbar-expand-lg navbar-light bg-success text-white">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#"><img src="/img/aseantours_logo.png" width="50" height="50" alt=""></a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-		  	</button>
-		  	<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav  me-auto mb-2 mb-lg-0">
-		      			<li class="nav-item">
-						<a class="nav-link active" aria-current="page" href="index.html">Home</a>
-		      			</li>
-		      			<li class="nav-item">
-						<a class="nav-link" href="#">About</a>
-		      			</li>
-		      			<li class="nav-item">
-						<a class="nav-link" href="Blog/index.html" >Blog</a>
-		      			</li>
-		      			<li class="nav-item dropdown">
-          					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            						Tour
-          					</a>
-          					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            						<li><a class="dropdown-item" href="#">Brunei</a></li>
-            						<li><a class="dropdown-item" href="#">Cambodia</a></li>
-							<li><a class="dropdown-item" href="#">Indonesia</a></li>
-            						<li><a class="dropdown-item" href="#">Laos</a></li>
-							<li><a class="dropdown-item" href="Philippines/index.html">Philippines</a></li>
-            						<li><a class="dropdown-item" href="Vietnam/index.html">Vietnam</a></li>
-            						<li><hr class="dropdown-divider"></li>
-            						<li><a class="dropdown-item" href="#">Southeast Asia</a></li>
-          					</ul>
-        				</li>
-		    		</ul>
-				<form class="d-flex">
-        				<input class="form-control me-2" type="search" placeholder="Search Tourist Spots" aria-label="Search">
-        				<button class="btn btn-outline-success" type="submit">Search</button>
-      				</form>
-		  	</div>
+		  <a class="navbar-brand" href="#">ASEANTours</a>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+		  <div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ms-auto">
+			  <li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="#">Home</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#">Destinations</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#">About Us</a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="#">Contact</a>
+			  </li>
+			</ul>
+		  </div>
 		</div>
-	</nav>
+	  </nav>
+	  
+	  
 	<!--Landing Webpage or Hero Image -->
-	<header>
-		<div class="hero-image">
-			<div class="hero-text">
-				<div class="bg-dark-opacity-50">
-					<h1 class="fw-bold display-1 text-uppercase">Explore<br> Southeast Asia</h1>
-				</div>
-				<p>We create memories for life</p>
-				<button class="btn btn-secondary mt-5" onClick="document.getElementById('country').scrollIntoView();" >Explore</button>
-			</div>	
+	<section class="hero-section">
+		<div class="container">
+		  <div class="row align-items-center">
+			<div class="col-md-6">
+			  <h1>Explore Southeast Asia</h1>
+			  <p>Discover the hidden gems of Southeast Asia with ASEANTours.</p>
+			  <a href="#country" class="btn btn-success">Get Started</a>
+			</div>
+			<div class="col-md-6">
+			  <img src="img/bohol.jpg" alt="Explore Southeast Asia" class="img-fluid">
+			</div>
+		  </div>
 		</div>
-	</header>
+	  </section>
+	  
 
 	<!--Country Page-->
-	<section class="pt-3">
-		<div class="countrypage" id="country">
+	<section class="pt-3" id="country">
+		<div class="countrypage">
 		<div class="container">
 			<h1 class="text-center display-1 fw-bold pt-5 pb-3">Countries of Southeast Asia</h1>
 			<hr>

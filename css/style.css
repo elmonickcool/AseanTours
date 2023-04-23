@@ -1,18 +1,10 @@
 
 
-.hero-image {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/hero.jpg");
-  height: 100vh;
-  width: 100vw;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-  flex-direction: column;
-  background-attachment: fixed;
-  align-items: center;
-  justify-content: center;
+.hero-section {
+  width: 100%;
+  height:100%;
 }
+
 .transparent{
 	background-color: rgba(59,59,59,0.7);
 	padding: 100px;
