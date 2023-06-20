@@ -1,13 +1,19 @@
-
-
 .hero-section {
   width: 100%;
-  height:100%;
+  height: 100%;
+  background-image: url("../img/bohol.jpg");
+  min-height: 100vh;
+  background-size: cover;
+  background-attachment:fixed;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
-.transparent{
-	background-color: rgba(59,59,59,0.7);
-	padding: 100px;
+.transparent {
+  background-color: rgba(59, 59, 59, 0.7);
+  padding: 100px;
   display: flex;
 }
 /* Place text in the middle of the image */
@@ -23,15 +29,15 @@
   padding-top: 80px;
 }
 
-.text-img{
+.text-img {
   position: relative;
   text-align: center;
   color: white;
   margin-bottom: 20px;
 }
-.text-img img{
-    width:100%;
-    height: 100%;
+.text-img img {
+  width: 100%;
+  height: 100%;
 }
 
 .centered {
@@ -39,44 +45,43 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color:white;
+  color: white;
 }
 .image__overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width:100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.3);
-	color:white;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	opacity: 0;
-	transition: opacity 0.25s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.25s;
 }
-.image__overlay:hover{
-	opacity: 1;
+.image__overlay:hover {
+  opacity: 1;
 }
-.countrypage{
-    height: 100%;
-    width: 100%;
-    padding: 2em;
-    background-image: url("../img/SEABackground.jpg");
-    background-repeat: no-repeat;
-    background-size: 100%;
-    background-position: center center;
-    
+.countrypage {
+  height: 100%;
+  width: 100%;
+  padding: 2em;
+  
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center center;
 }
-.whyasia{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../img/travelscape.jpg");
+.whyasia {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../img/travelscape.jpg");
   height: 100%;
   width: 100%;
   padding: 2em;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: 100%;
-  color:white;
+  color: white;
   display: flex;
 }
-
