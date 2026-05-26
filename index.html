@@ -1,219 +1,590 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Asean Tours</title>
-	<!--External CSS-->
-	<link rel="stylesheet" href="css/style.css">
-	<!--Bootstrap 5-->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-	<!--Favicon -->
-	<link rel="icon" type="image/x-icon" href="img/favicon.ico">
-	
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASEANTours</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --gold: #C9963A;
+    --gold-light: #F0D98C;
+    --dark: #12100E;
+    --dark-2: #1E1B16;
+    --dark-3: #2C2820;
+    --cream: #F5EDD8;
+    --cream-2: #EAD9B8;
+    --text-muted: #9A8E7A;
+    --green: #2E5D3C;
+  }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--dark);
+    color: var(--cream);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(to bottom, rgba(12,10,8,0.95) 0%, transparent 100%);
+    backdrop-filter: blur(2px);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    color: var(--gold-light);
+  }
+  .nav-logo span { color: var(--cream); font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--cream-2);
+    font-size: 0.85rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute; bottom: -4px; left: 0; right: 100%;
+    height: 1px; background: var(--gold);
+    transition: right 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links a:hover::after { right: 0; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse at 70% 40%, rgba(201,150,58,0.12) 0%, transparent 60%),
+      linear-gradient(135deg, #0A0806 0%, #1A1408 40%, #0D1A0F 100%);
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image: 
+      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(201,150,58,0.03) 40px, rgba(201,150,58,0.03) 41px),
+      repeating-linear-gradient(-45deg, transparent, transparent 40px, rgba(201,150,58,0.03) 40px, rgba(201,150,58,0.03) 41px);
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 3rem;
+    max-width: 680px;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block;
+    width: 30px; height: 1px; background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    font-weight: 700;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+  .hero p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 440px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 1rem;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    background: var(--gold);
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+    cursor: pointer; border: none;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: var(--cream-2);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid rgba(201,150,58,0.3);
+    border-radius: 2px;
+    transition: border-color 0.2s, color 0.2s;
+    cursor: pointer;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); }
+  .hero-stats {
+    position: absolute; right: 3rem; bottom: 3rem;
+    display: flex; gap: 3rem;
+  }
+  .stat-item { text-align: right; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--gold-light);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--text-muted); margin-top: 0.25rem;
+  }
+
+  /* SECTION GENERAL */
+  section { padding: 5rem 3rem; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .section-label::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+  hr.divider {
+    border: none; border-top: 1px solid rgba(201,150,58,0.2);
+    margin: 2rem 0;
+  }
+
+  /* COUNTRIES GRID */
+  .countries-bg { background: var(--dark-2); }
+  .countries-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 2.5rem;
+  }
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: rgba(201,150,58,0.15);
+  }
+  .country-card {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .country-card-bg {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    transition: transform 0.5s ease;
+    filter: brightness(0.55) saturate(0.7);
+  }
+  .country-card:hover .country-card-bg {
+    transform: scale(1.06);
+    filter: brightness(0.7) saturate(0.85);
+  }
+  .country-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(12,10,8,0.9) 0%, transparent 50%);
+  }
+  .country-card-content {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1rem 0.85rem;
+  }
+  .country-num {
+    font-size: 0.6rem; letter-spacing: 0.15em; color: var(--gold);
+    font-weight: 400; display: block; margin-bottom: 0.3rem;
+  }
+  .country-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--cream);
+    display: block;
+  }
+  .country-tag {
+    font-size: 0.65rem; color: var(--text-muted);
+    display: block; margin-top: 0.2rem;
+    letter-spacing: 0.08em;
+  }
+  .country-card-wide {
+    grid-column: span 2;
+    aspect-ratio: unset;
+  }
+
+  /* Gradient placeholders for country cards */
+  .bg-brunei { background: linear-gradient(135deg, #1a3a2a 0%, #0d2218 100%); }
+  .bg-cambodia { background: linear-gradient(135deg, #3a2a10 0%, #221808 100%); }
+  .bg-indonesia { background: linear-gradient(135deg, #3a1a10 0%, #221008 100%); }
+  .bg-laos { background: linear-gradient(135deg, #1a2a3a 0%, #0d1822 100%); }
+  .bg-malaysia { background: linear-gradient(135deg, #2a1a3a 0%, #180d22 100%); }
+  .bg-myanmar { background: linear-gradient(135deg, #3a2a10 0%, #221808 100%); }
+  .bg-philippines { background: linear-gradient(135deg, #102a3a 0%, #081822 100%); }
+  .bg-singapore { background: linear-gradient(135deg, #2a3a1a 0%, #182210 100%); }
+  .bg-thailand { background: linear-gradient(135deg, #3a1a2a 0%, #220d18 100%); }
+  .bg-vietnam { background: linear-gradient(135deg, #3a1010 0%, #220808 100%); }
+
+  /* Country icons (abstract shapes) */
+  .country-icon {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.5rem;
+  }
+
+  /* BLOG */
+  .blog-section { background: var(--dark); }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 1px;
+    background: rgba(201,150,58,0.15);
+    margin-top: 2.5rem;
+  }
+  .blog-card {
+    background: var(--dark-2);
+    padding: 2rem;
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+  .blog-card:hover { background: var(--dark-3); }
+  .blog-cat {
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .blog-cat::before { content: ''; display: block; width: 16px; height: 1px; background: var(--gold); }
+  .blog-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; line-height: 1.3;
+    color: var(--cream); margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  .blog-card.featured h3 {
+    font-size: 1.8rem; line-height: 1.2;
+  }
+  .blog-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem; line-height: 1.65;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+  .blog-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(201,150,58,0.15);
+    padding-top: 1rem; margin-top: auto;
+  }
+  .blog-author { font-size: 0.75rem; color: var(--text-muted); }
+  .blog-read-btn {
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 0.4rem;
+  }
+  .blog-read-btn::after { content: '→'; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(201,150,58,0.15);
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--gold-light);
+  }
+  .footer-logo em { font-style: italic; color: var(--cream); }
+  .footer-tagline { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.6; font-weight: 300; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.6rem; }
+  .footer-links a {
+    text-decoration: none; color: var(--text-muted);
+    font-size: 0.85rem; transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--gold-light); }
+  .footer-label {
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .footer-bottom {
+    grid-column: 1/-1;
+    border-top: 1px solid rgba(201,150,58,0.1);
+    padding-top: 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+  .footer-credit { font-size: 0.75rem; color: var(--text-muted); }
+
+  /* SCROLL ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up { animation: fadeUp 0.7s ease forwards; }
+  .fade-up-2 { animation: fadeUp 0.7s 0.15s ease both; }
+  .fade-up-3 { animation: fadeUp 0.7s 0.3s ease both; }
+  .fade-up-4 { animation: fadeUp 0.7s 0.45s ease both; }
+  .fade-up-5 { animation: fadeUp 0.7s 0.6s ease both; }
+
+  /* Decorative line element */
+  .deco-line {
+    width: 1px; height: 80px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    margin: 0 auto 2rem;
+  }
+</style>
 </head>
 <body>
-	
-	<nav class="navbar navbar-expand-lg navbar-light bg-success text-white py-3">
-		<div class="container-fluid">
-		  <a class="navbar-brand" href="#">ASEANTours</a>
-		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		  </button>
-		  <div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav ms-auto">
-			  <li class="nav-item">
-				<a class="nav-link active" aria-current="page" href="#">Home</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#">Destinations</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#">About Us</a>
-			  </li>
-			  <li class="nav-item">
-				<a class="nav-link" href="#">Contact</a>
-			  </li>
-			</ul>
-		  </div>
-		</div>
-	  </nav>
-	  
-	  
-	<!--Landing Webpage or Hero Image -->
-	<section class="hero-section">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-md-6">
-					<h1 class="display-1 fw-bold" style="color: #fff; font-size: 48px; font-weight: bold; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Explore Southeast Asia</h1>
-					<p style="color: #fff; font-size: 20px; margin-bottom: 30px;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Discover the hidden gems of Southeast Asia with ASEANTours.</p>
-					<a href="#country" class="btn btn-success" style="font-size: 18px; padding: 12px 30px;">Get Started</a>
-				</div>
-			</div>
-		</div>
-	</section>
-	
-	
-	
 
-	<!--Country Page-->
-	<section class="pt-3" id="country">
-		<div class="countrypage">
-		<div class="container">
-			<h1 class="text-center display-1 fw-bold pt-5 pb-3">Countries of Southeast Asia</h1>
-			<hr>
-			<div class="row pb-3 pt-3">
-				<div class="col-xl-3 col-lg-4 col-md-4 col-6">
-					<a href="Brunei/index.html">
-						<div class="text-img">
-							<img src="img/omar-ali.jpg" class="img-fluid img-thumbnail" alt="">
-							<div class="image__overlay">
-								<h5>Brunei</h5>
-							</div>
-							
-						</div>
-					</a>
-				</div>
-			
-				<div class="col-xl-3 col-lg-4 col-md-4 col-6">
-					<a href="Cambodia/index.html">
-						<div class="text-img">
-						<img src="img/angkor-wat.jpg" class="img-fluid img-thumbnail" alt="">
-							<div class="image__overlay">
-								<h5>Cambodia</h5>
-							</div>
-						</div>
-					</a>
-					
-				</div>
-				<div class="col-xl-3 col-lg-4 col-md-4 col-6">
-					<a href="">
-						<div class="text-img">
-						<img src="img/ulun-danu.jpg" class="img-fluid img-thumbnail" alt="">
-							<div class="image__overlay">
-								<h5>Indonesia</h5>
-							</div>
-						</div>
-					</a>
-					
-				</div>
-				<div class="col-xl-3 col-lg-4 col-md-4 col-6">
-					<a href="">
-						<div class="text-img">
-						<img src="img/pha-that-luang.jpg" class="img-fluid img-thumbnail" alt="">
-						<div class="image__overlay"><h5>Laos</h5></div>
-					</div>
-					</a>
-					
-				</div>
-			
-				<div class="col-xl-3 col-lg-4 col-md-4 col-6">
-					<a href="">
-						<div class="text-img">
-						<img src="img/petronas.jpg" class="img-fluid img-thumbnail" alt="">
-						<div class="image__overlay"><h5>Malaysia</h5></div>
-					</div>
-					</a>
-					
-				</div>
-				<div class="col-xl-3 col-lg-4 col-md-4 col-6">
-					<a href="">
-						<div class="text-img">
-						<img src="img/shwedagon-pagoda.jpg" class="img-fluid img-thumbnail" alt="">
-						<div class="image__overlay"><h5>Myanmar</h5></div>
-					</div>
-					</a>
-					
-				</div>
-				<div class="col-xl-3 col-lg-4 col-md-4 col-6">
-					<a href="Philippines/index.html">
-						<div class="text-img">
-						<img src="img/banaue-rice-terraces.jpg" class="img-fluid img-thumbnail" alt="A Photo by Mikael @ Unsplash">
-						<div class="image__overlay"><h5>Philippines</h5></div>
-					</div>
-					</a>
-					
-				</div>
-				<div class="col-xl-3 col-lg-4 col-md-4 col-6">
-					<a href="Singapore/index.html">
-						<div class="text-img">
-						<img src="img/merlion-nightlife.jpg" class="img-fluid img-thumbnail" alt="A Photo by Joshua Ang @ Unsplash">
-						<div class="image__overlay"><h5>Singapore</h5></div>
-					</div>
-					</a>
-					
-				</div>
-				<div class="col-xl-3 col-lg-4 col-md-4 col-6">
-					<a href="Thailand/index.html">
-						<div class="text-img">
-							<img src="img/pattaya-temple.jpg" class="img-fluid img-thumbnail" alt="">
-							<div class="image__overlay"><h5>Thailand</h5></div>
-						</div>
-					</a>
-					
-				</div>
-				<div class="col-xl-3 col-lg-4 col-md-4 col-6">
-					<a href="Vietnam/index.html">
-						<div class="text-img">
-						<img src="img/mekong-river-delta.jpg" class="d-block img-fluid img-thumbnail" alt="">
-						<div class="image__overlay"><h5>Vietnam</h5></div>
-					</div>
-					</a>
-					
-				</div>
-			</div>
-		</div>
-		</div>
-	</section>
-	<!--Blog-->
-	<section>
-		<div class="container-fluid">
-			<div class="bg-secondary-opacity-30 p-5">
-				<h1 class="text-center display-1 fw-bold pt-5 pb-3">Blogs</h1>
-				<hr>
-				<div class="row pt-3">
-					<div class="col-8 col-lg-4 col-md-6 pb-3">
-						<div class="card" style="width: 18rem;">
-							<img src="img/angkor-wat.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Most Popular Places in Southeast Asia</h5>
-								<h6 class="card-subtitle mb-2 mt-3">Elmo Nickol C. Laplap</h6>
-								<a href="Blog/top-ten-most-popular.html" class="btn btn-primary">Read</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-8 col-lg-4 col-md-6 pb-3">
-						<div class="card" style="width: 18rem;">
-							<img src="img/travelscape.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Why you should Travel to Southeast Asia Countries?</h5>
-								<h6 class="card-subtitle mb-2 mt-3">Elmo Nickol C. Laplap</h6>
-								<a href="Blog/why-travel-sea.html" class="btn btn-primary">Read</a>
-							</div>
-						</div>
-					</div>
-					<div class="col-8 col-lg-4 col-md-6 pb-3">
-						<div class="card" style="width: 18rem;">
-							<img src="img/experience.jpg" class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">My Experience in Indo-China</h5>
-								<h6 class="card-subtitle mb-2 mt-3">Elmo Nickol C. Laplap</h6>
-								<a href="Blog/experience.html" class="btn btn-primary">Read</a>
-							</div>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</section>
-	
-	
-	<footer class="p-5 bg-dark text-white text-center">
-		<p>Developed by Elmo Nickol C. Laplap</p>	
-	</footer>
+<nav>
+  <div class="nav-logo">ASEAN<span>Tours</span></div>
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#destinations">Destinations</a></li>
+    <li><a href="#stories">Stories</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow fade-up">Southeast Asia Awaits</div>
+    <h1 class="fade-up-2">Where Ancient <em>Wonders</em> Meet Wild Beauty</h1>
+    <p class="fade-up-3">From misty highland temples to jewel-blue lagoons — journey through ten countries, ten cultures, and a lifetime of stories with ASEANTours.</p>
+    <div class="hero-cta fade-up-4">
+      <a href="#destinations" class="btn-primary">Explore Destinations ↓</a>
+      <a href="#stories" class="btn-ghost">Read Stories</a>
+    </div>
+  </div>
+  <div class="hero-stats fade-up-5">
+    <div class="stat-item">
+      <div class="stat-num">10</div>
+      <div class="stat-label">Countries</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">340+</div>
+      <div class="stat-label">Destinations</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">12K</div>
+      <div class="stat-label">Travelers</div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTRIES -->
+<section class="countries-bg" id="destinations" style="padding: 5rem 0;">
+  <div style="padding: 0 3rem 2.5rem;">
+    <div class="countries-header">
+      <div>
+        <div class="section-label">Where to go</div>
+        <h2 class="section-title">Ten Countries, <em>Infinite Stories</em></h2>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.85rem; max-width: 280px; text-align: right; line-height: 1.7; font-weight: 300;">
+        Every corner of Southeast Asia holds something extraordinary. Choose your next adventure.
+      </p>
+    </div>
+  </div>
+  <div class="countries-grid">
+    <!-- Row 1: 5 cards -->
+    <a class="country-card" href="Brunei/index.html">
+      <div class="country-card-bg bg-brunei"><div class="country-icon">🕌</div></div>
+      <div class="country-card-overlay"></div>
+      <div class="country-card-content">
+        <span class="country-num">01</span>
+        <span class="country-name">Brunei</span>
+        <span class="country-tag">Golden Mosques</span>
+      </div>
+    </a>
+    <a class="country-card" href="Cambodia/index.html">
+      <div class="country-card-bg bg-cambodia"><div class="country-icon">🏛️</div></div>
+      <div class="country-card-overlay"></div>
+      <div class="country-card-content">
+        <span class="country-num">02</span>
+        <span class="country-name">Cambodia</span>
+        <span class="country-tag">Angkor Temples</span>
+      </div>
+    </a>
+    <a class="country-card" href="#">
+      <div class="country-card-bg bg-indonesia"><div class="country-icon">🌋</div></div>
+      <div class="country-card-overlay"></div>
+      <div class="country-card-content">
+        <span class="country-num">03</span>
+        <span class="country-name">Indonesia</span>
+        <span class="country-tag">17,000 Islands</span>
+      </div>
+    </a>
+    <a class="country-card" href="#">
+      <div class="country-card-bg bg-laos"><div class="country-icon">🌿</div></div>
+      <div class="country-card-overlay"></div>
+      <div class="country-card-content">
+        <span class="country-num">04</span>
+        <span class="country-name">Laos</span>
+        <span class="country-tag">River Serenity</span>
+      </div>
+    </a>
+    <a class="country-card" href="#">
+      <div class="country-card-bg bg-malaysia"><div class="country-icon">🏙️</div></div>
+      <div class="country-card-overlay"></div>
+      <div class="country-card-content">
+        <span class="country-num">05</span>
+        <span class="country-name">Malaysia</span>
+        <span class="country-tag">Twin Towers</span>
+      </div>
+    </a>
+    <!-- Row 2 -->
+    <a class="country-card" href="#">
+      <div class="country-card-bg bg-myanmar"><div class="country-icon">☸️</div></div>
+      <div class="country-card-overlay"></div>
+      <div class="country-card-content">
+        <span class="country-num">06</span>
+        <span class="country-name">Myanmar</span>
+        <span class="country-tag">Shwedagon Pagoda</span>
+      </div>
+    </a>
+    <a class="country-card" href="Philippines/index.html">
+      <div class="country-card-bg bg-philippines"><div class="country-icon">🌊</div></div>
+      <div class="country-card-overlay"></div>
+      <div class="country-card-content">
+        <span class="country-num">07</span>
+        <span class="country-name">Philippines</span>
+        <span class="country-tag">Island Paradise</span>
+      </div>
+    </a>
+    <a class="country-card" href="Singapore/index.html">
+      <div class="country-card-bg bg-singapore"><div class="country-icon">🦁</div></div>
+      <div class="country-card-overlay"></div>
+      <div class="country-card-content">
+        <span class="country-num">08</span>
+        <span class="country-name">Singapore</span>
+        <span class="country-tag">City of Gardens</span>
+      </div>
+    </a>
+    <a class="country-card" href="Thailand/index.html">
+      <div class="country-card-bg bg-thailand"><div class="country-icon">⛩️</div></div>
+      <div class="country-card-overlay"></div>
+      <div class="country-card-content">
+        <span class="country-num">09</span>
+        <span class="country-name">Thailand</span>
+        <span class="country-tag">Land of Smiles</span>
+      </div>
+    </a>
+    <a class="country-card" href="Vietnam/index.html">
+      <div class="country-card-bg bg-vietnam"><div class="country-icon">🏮</div></div>
+      <div class="country-card-overlay"></div>
+      <div class="country-card-content">
+        <span class="country-num">10</span>
+        <span class="country-name">Vietnam</span>
+        <span class="country-tag">Mekong Delta</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-section" id="stories">
+  <div class="section-label">From the Field</div>
+  <h2 class="section-title">Travel <em>Stories</em> & Guides</h2>
+
+  <div class="blog-grid">
+    <a class="blog-card featured" href="Blog/top-ten-most-popular.html" style="display: flex; flex-direction: column; background: linear-gradient(135deg, #1E1B16 0%, #2C2015 100%);">
+      <div style="font-size: 3rem; margin-bottom: 1.5rem;">🏛️</div>
+      <div class="blog-cat">Top Picks</div>
+      <h3>Most Popular Places in Southeast Asia</h3>
+      <p>From the sacred spires of Angkor Wat to the luminous skyline of Singapore — a curated guide through the region's most iconic destinations.</p>
+      <div class="blog-meta">
+        <span class="blog-author">Elmo Nickol C. Laplap</span>
+        <span class="blog-read-btn">Read</span>
+      </div>
+    </a>
+    <a class="blog-card" href="Blog/why-travel-sea.html" style="display: flex; flex-direction: column;">
+      <div style="font-size: 2rem; margin-bottom: 1rem;">✈️</div>
+      <div class="blog-cat">Essay</div>
+      <h3>Why You Should Travel to Southeast Asia</h3>
+      <div class="blog-meta" style="margin-top: auto;">
+        <span class="blog-author">E.N.C. Laplap</span>
+        <span class="blog-read-btn">Read</span>
+      </div>
+    </a>
+    <a class="blog-card" href="Blog/experience.html" style="display: flex; flex-direction: column;">
+      <div style="font-size: 2rem; margin-bottom: 1rem;">🌏</div>
+      <div class="blog-cat">Personal</div>
+      <h3>My Experience in Indo-China</h3>
+      <div class="blog-meta" style="margin-top: auto;">
+        <span class="blog-author">E.N.C. Laplap</span>
+        <span class="blog-read-btn">Read</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">ASEAN<em>Tours</em></div>
+    <p class="footer-tagline">Your trusted guide through the wonders of Southeast Asia since 2022.</p>
+  </div>
+  <div>
+    <div class="footer-label">Quick Links</div>
+    <ul class="footer-links">
+      <li><a href="#">Home</a></li>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#">About Us</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-label">Destinations</div>
+    <ul class="footer-links">
+      <li><a href="#">Philippines</a></li>
+      <li><a href="#">Thailand</a></li>
+      <li><a href="#">Vietnam</a></li>
+      <li><a href="#">Singapore</a></li>
+      <li><a href="#">Cambodia</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2024 ASEANTours. All rights reserved.</span>
+    <span class="footer-credit">Developed by Elmo Nickol C. Laplap</span>
+  </div>
+</footer>
+
 </body>
 </html>
